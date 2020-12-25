@@ -92,7 +92,7 @@ def process_block(data, parent='each', file_name='', plural_exceptions=[], compu
       for key, value in attributes.items():
         if 'computed' in value:
           txt = f'        {_objpath} = {{\n'
-          write_file('outputs.tf', txt, 'a')
+          write_file('k8s.outputs.tf', txt, 'a')
           computed_exits=True
           break
 
@@ -133,7 +133,7 @@ def process_block(data, parent='each', file_name='', plural_exceptions=[], compu
         if description:
           txt +=  f'{"  " if objpath else ""}        # {description}\n'
           txt += f'\n'
-        write_file('outputs.tf', txt, 'a')
+        write_file('k8s.outputs.tf', txt, 'a')
 
       
 
@@ -141,7 +141,7 @@ def process_block(data, parent='each', file_name='', plural_exceptions=[], compu
     if objpath and computed_exits and long_out:
       txt = f'        }}\n'
       txt += f'\n'
-      write_file('outputs.tf', txt, 'a')
+      write_file('k8s.outputs.tf', txt, 'a')
 
   if block_types:
     for key, value in block_types.items():
@@ -224,7 +224,7 @@ def process_json(json_file = 'provider.json', filter=[], debug=False, verbose=1,
   
     txt += f'  for app, config in var.appConfig:\n'
     txt += f'    app => {{\n'
-  write_file('outputs.tf', txt, 'w')
+  write_file('k8s.outputs.tf', txt, 'w')
 
   for resource_name, resource_schema in resource_schemas.items():
     
@@ -242,13 +242,13 @@ def process_json(json_file = 'provider.json', filter=[], debug=False, verbose=1,
     #txt += (level * tab) + f'{tab }}}\n'
     txt += (level * tab) + f'for_each = local.{resource_short_name}.applications\n'
     txt += f'\n'
-    output_file = f'{resource_short_name}.tf'
+    output_file = f'k8s.{resource_short_name}.tf'
     write_file(output_file, txt, 'w')
 
     # Output File
     if long_out:
       txt = f'      {resource_short_name} = contains(keys(local.{resource_short_name}.applications), app) ? {{\n'
-      write_file('outputs.tf', txt, 'a')
+      write_file('k8s.outputs.tf', txt, 'a')
 
     if verbose > 0:
       print (f'Processing {resource_name}...\n')
@@ -306,7 +306,7 @@ def process_json(json_file = 'provider.json', filter=[], debug=False, verbose=1,
     if long_out:
       txt = f'      }} : null\n'
       txt += f'\n'
-      write_file('outputs.tf', txt, 'a')
+      write_file('k8s.outputs.tf', txt, 'a')
 
   # Locals
   txt = f'}}'
@@ -317,7 +317,7 @@ def process_json(json_file = 'provider.json', filter=[], debug=False, verbose=1,
     txt  = f'      }}\n'
     txt += f'  }}\n'
     txt += f'}}\n'
-    write_file('outputs.tf', txt, 'a')
+    write_file('k8s.outputs.tf', txt, 'a')
 
   return 
 
