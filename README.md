@@ -1,5 +1,5 @@
-# Kubernetes-Terraform-Yaml Module #
-## Terraform Module to Deploy Multiple Application Configurations into Kubernetes Cluster #
+# Terraform-Kubernetes-Yaml Module #
+Teaform Module to Deploy Yaml Configurations Files into Kubernetes Cluster 
 ### Sourcing Application Configuration from outside Terraform code as YAML or JSON #
 
 Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage popular cloud providers by means of plugins.Infrastructure is described using a high-level configuration syntax. This allows a blueprint of your datacenter to be versioned and treated as you would any other code. Additionally, infrastructure can be shared and re-used. This concept is called Infrastructure as Code.
