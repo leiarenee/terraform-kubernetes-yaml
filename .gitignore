@@ -2,3 +2,4 @@
 .terraform
 *.tfstate*
 *kubeconfig*
+.DS_Store

@@ -625,4 +625,3 @@ Processing kubernetes_storage_class...
     - Output resulting configuration to YAML
 
 Any contribution is welcome.
-bircanbilici@gmail.com
